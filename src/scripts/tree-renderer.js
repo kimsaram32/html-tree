@@ -35,7 +35,7 @@ function canDraw(node) {
 const leafSpritesheetPromise = new Promise((resolve) => {
   const image = new Image()
   image.addEventListener('load', () => resolve(image))
-  image.src = '/leaves.webp'
+  image.src = 'leaves.webp'
 })
 
 /**

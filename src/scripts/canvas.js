@@ -1,4 +1,4 @@
-import { TreeRenderer } from '../scripts/tree-renderer.js'
+import { TreeRenderer } from './tree-renderer.js'
 
 const ZOOM_MIN = 0.5
 
