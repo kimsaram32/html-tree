@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Tree</title>
+    
+    <link rel="stylesheet" href="/index.css">
+
+    <link rel="preload" href="/fonts/black-han-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/leaves.webp" as="image" type="image/webp">
+  </head>
+  <body>
+    <main>
+      <h1>HTML <span>Tree</span></h1>
+  
+      <section>
+        <div class="canvas-container">
+          <canvas id="tree" width="700" height="700"></canvas>
+          <p class="load-alert" hidden>Loading</p>
+          <button class="reset-canvas" disabled hidden>Reset</button>
+        </div>
+        <div class="code-container">
+          <p>Press <kbd>ESC</kbd> to move away</p>
+          <pre class="code" contenteditable="plaintext-only" spellcheck="false">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+  &lt;title&gt;HTML Tree&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/index.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main&gt;
+    &lt;h1&gt;HTML Tree&lt;/h1&gt;
+
+    &lt;div&gt;
+      &lt;canvas id=&quot;tree&quot; width=&quot;700&quot; height=&quot;700&quot;&gt;&lt;/canvas&gt;
+      &lt;label&gt;
+        HTML
+        &lt;textarea rows=&quot;60&quot;&gt;&lt;/textarea&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+          </pre>
+        </div>
+        <footer>
+          <button class="regenerate" data-next-focus>Regenerate</button>
+          <p>Icons by <a href="https://icons8.com/">Icons8</a> and <a href="https://github.com/twitter/twemoji" data-prev-focus>Twitter Emoji</a></p>
+        </footer>
+      </section>
+    </main>
+
+    <script src="/scripts/main.js" type="module"></script>
+  </body>
+</html>

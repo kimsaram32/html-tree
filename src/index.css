@@ -1,0 +1,315 @@
+/**
+ * reset and globals
+ */
+
+:root {
+  --text: oklch(16.42% 0.015 41.67);
+  --text-on-primary: oklch(98.96% 0.002 17.19);
+  --background: oklch(98.96% 0.002 17.19);
+  --primary: oklch(60.71% 0.098 35.41);
+  --secondary: oklch(83.53% 0.080 133.90);
+  --accent: oklch(75.46% 0.125 144.22);
+
+  /* todo once safari mobile supports oklch on canvas, remove hsl */
+
+  /* --tree-branch-l: 43%;
+  --tree-leaf-l: 60%;
+  
+  --tree-branch-color: oklch(var(--tree-branch-l) 0.116 36.82);
+  --tree-leaf-color: oklch(var(--tree-leaf-l) 0.16 142);
+  --tree-leaf-comment-color: oklch(70% 0.01 142);
+  --tree-leaf-link-color: oklch(var(--tree-leaf-l) 0.16 260);
+  --tree-leaf-em-color: oklch(var(--tree-leaf-l) 0.16 100);
+  --tree-bg-color: oklch(98.96% 0.002 272); */
+
+  --tree-branch-color: hsl(13.478 60.682% 33.519%);
+  --tree-leaf-color: hsl(115.16 48.003% 39.953%);
+  --tree-leaf-comment-color: hsl(112.87 2.9193% 61.632%);
+  --tree-leaf-link-color: hsl(217.48 70.243% 56.663%);
+  --tree-leaf-em-color: hsl(53.21 100% 27.287%);
+  --tree-bg-color: hsl(225.49 32.048% 98.818%);
+
+  --darken: black;
+  --lighten: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: oklch(95.23% 0.008 39.44);
+    --text-on-primary: oklch(90.23% 0.011 39.44);
+    --background: oklch(25% 0.005 18.05);
+    --primary: oklch(35% 0.08 35.68);
+    --secondary: oklch(44.99% 0.090 134.66);
+    --accent: oklch(54.29% 0.129 143.55);
+
+    /* --tree-branch-l: 45%;
+    --tree-leaf-l: 70%;
+    --tree-bg-color: oklch(25% 0.005 251); */
+
+    --tree-branch-color: hsl(13.478 60.682% 33.519%);
+    --tree-leaf-color: hsl(114.76 40.259% 52.407%);
+    --tree-leaf-comment-color: hsl(112.87 2.9193% 61.632%);
+    --tree-leaf-link-color: hsl(217.45 100% 69.231%);
+    --tree-leaf-em-color: hsl(53.302 100% 33.953%);
+    --tree-bg-color: hsl(211.66 6.0474% 13.301%);
+      
+    --darken: white;
+    --lighten: black;
+  }
+}
+
+@font-face {
+  font-family: 'Black Han Sans';
+  src: url('/fonts/black-han-sans-400.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Black Han Sans-fallback';
+  size-adjust: 126.1%;
+  ascent-override: 74%;
+  src: local('Arial');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-600.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter-fallback';
+  size-adjust: 107.00%;
+  ascent-override: 91%;
+  src: local('Arial');
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+input, button, select, textarea {
+  color: inherit;
+  font: inherit;
+}
+
+a {
+  text-decoration-thickness: 0.12em;
+  color: color-mix(in oklab, var(--accent), var(--darken) 30%);
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 0.2rem dotted color-mix(in oklab, var(--accent), var(--darken) 30%);
+  outline-offset: 0.2rem;
+}
+
+:is(button, textarea):focus-visible {
+  outline-offset: -0.4rem;
+}
+
+html {
+  font-size: clamp(1rem, 0.93rem + 0.348vw, 1.2rem);
+  color-scheme: light dark;
+  overscroll-behavior: none;
+}
+
+body {
+  padding-block: 2rem;
+  color: var(--text);
+  background-color: var(--background);
+  overflow-inline: clip;
+  font-family: 'Inter', 'Inter-fallback', system-ui;
+  font-weight: 600;
+
+  @supports not (overflow-inline: clip) {
+    overflow-x: clip;
+  }
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/**
+ * styles
+ */
+
+main {
+  inline-size: min(92vi, 60rem);
+  margin-inline: auto;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Black Han Sans', 'Black Han Sans-fallback', system-ui;
+  font-weight: 400;
+  color: color-mix(in oklab, var(--primary), var(--darken) 40%);
+  font-size: clamp(2rem, 1.86rem + 0.69vw, 2.4rem);
+}
+
+@supports (-webkit-text-stroke: 1px red) {
+  h1 span {
+    -webkit-text-stroke: 0.08em color-mix(in oklab, var(--secondary), var(--darken) 40%);
+    color: var(--text-on-primary);
+    paint-order: stroke fill;
+  }
+}
+
+section {
+  --border-width-half: 0.2rem;
+  --border-color: color-mix(in oklab, var(--primary), var(--darken) 10%);
+  margin-block-start: 1rem;
+  border: var(--border-width-half) solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  overflow: clip;
+}
+
+section > :not(footer),
+section > footer > * {
+  border: var(--border-width-half) solid var(--border-color);
+}
+
+.canvas-container, .code-container {
+  position: relative;
+  flex: 1 1 18rem;
+}
+
+canvas {
+  inline-size: 100%;
+  touch-action: none;
+}
+
+.load-alert {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  padding: 0.4rem;
+  font-size: 0.875rem;
+}
+
+.reset-canvas {
+  --l: 45%;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: 0;
+  padding-inline: 1.2rem;
+  padding-block: 0.6rem;
+  border: none;
+  background-color: color-mix(in oklab, hsl(0 0% 50%), var(--lighten) var(--l));
+}
+
+.reset-canvas:hover {
+  --l: 25%;
+}
+
+.reset-canvas:not(:disabled) {
+  display: block;
+}
+
+.code-container {
+  display: grid;
+  aspect-ratio: 1;
+}
+
+.code-container p {
+  position: absolute;
+  padding: 0.2rem;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  font-size: 0.875rem;
+  background-color: var(--background);
+}
+
+.code-container p:not(:has(+ :focus)) {
+  opacity: 0;
+}
+
+.code {
+  padding: 0.8rem;
+  font-weight: 400;
+  font-size: 0.875rem;
+  text-wrap: wrap;
+  overflow: auto;
+  caret-color: color-mix(in oklab, var(--accent), var(--darken) 30%);
+  color: color-mix(in oklab, var(--text), var(--lighten) 15%);
+  overscroll-behavior: contain;
+}
+
+.code:focus {
+  outline-offset: -0.4rem;
+}
+
+::highlight(tag-name) {
+  --_c: color-mix(in oklab, var(--accent), var(--darken) 30%);
+  color: var(--_c);
+  -webkit-text-stroke: 0.04em var(--_c);
+}
+
+footer {
+  inline-size: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer > * {
+  padding-block: 1.2rem;
+  padding-inline: 1.8rem;
+}
+
+.regenerate {
+  flex: 1 1 0;
+  background-color: var(--border-color);
+  color: var(--text-on-primary);
+  outline-color: white;
+  touch-action: manipulation;
+}
+
+.regenerate:hover {
+  background-color: color-mix(in oklab, var(--border-color), var(--darken) 30%);
+}
+
+@media (width < 40rem) {
+  main {
+    padding-block-end: 4rem;
+  }
+
+  .regenerate {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+  }
+}
+
+footer p {
+  flex: 999 1 20rem;
+  text-align: end;
+  font-weight: 400;
+}
+
+footer a {
+  font-weight: 600;
+}
